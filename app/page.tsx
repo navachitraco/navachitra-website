@@ -1,12 +1,16 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import {
   AnimatePresence,
   motion,
   MotionConfig,
   type Variants,
 } from "motion/react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 // PASTE YOUR WEB3FORMS ACCESS KEY BELOW.
 // Replace "YOUR_WEB3FORMS_KEY" with the access key from https://web3forms.com
@@ -100,7 +104,11 @@ export default function Home() {
           animate="show"
           className="relative flex items-center justify-between px-6 py-6 sm:px-10 sm:py-8"
         >
-          <a href="/" aria-label="Navachitra home" className="inline-flex text-ink">
+          <Link
+            href="/"
+            aria-label="Navachitra home"
+            className="inline-flex text-ink"
+          >
             <svg
               viewBox="0 0 1459 768"
               role="img"
@@ -112,7 +120,7 @@ export default function Home() {
                 fill="currentColor"
               />
             </svg>
-          </a>
+          </Link>
           <a
             href="https://instagram.com/navachitraco"
             target="_blank"
@@ -135,8 +143,8 @@ export default function Home() {
               className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.18em] text-ink-soft uppercase"
             >
               <span className="relative flex size-2">
-                <span className="absolute inset-0 rounded-full bg-accent opacity-70 motion-safe:animate-ping" />
-                <span className="relative size-2 rounded-full bg-accent" />
+                <span className="absolute inset-0 rounded-full bg-brand opacity-70 motion-safe:animate-ping" />
+                <span className="relative size-2 rounded-full bg-brand" />
               </span>
               Launching soon
             </motion.p>
@@ -152,8 +160,8 @@ export default function Home() {
               variants={rise}
               className="mx-auto mt-6 max-w-md text-base leading-relaxed text-pretty text-ink-soft sm:text-lg"
             >
-              Navachitra is a social media and web design studio from Surat.
-              Our new home is almost ready. Be the first to see it.
+              Navachitra is a social media and web design studio from Surat. Our
+              new home is almost ready. Be the first to see it.
             </motion.p>
 
             <motion.div variants={rise} className="mx-auto mt-10 max-w-md">
@@ -167,7 +175,7 @@ export default function Home() {
                     role="status"
                     className="flex items-center justify-center gap-3 py-3"
                   >
-                    <span className="flex size-7 items-center justify-center rounded-full bg-accent text-sm font-bold text-paper">
+                    <span className="flex size-7 items-center justify-center rounded-full bg-brand text-sm font-bold text-paper">
                       ✓
                     </span>
                     <p className="font-medium">
@@ -181,7 +189,7 @@ export default function Home() {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                     onSubmit={handleSubmit}
                     noValidate
-                    className="flex items-center gap-2 rounded-full bg-field p-1.5 pl-5 transition-shadow focus-within:ring-2 focus-within:ring-accent-deep/70"
+                    className="flex items-center gap-2 rounded-full bg-field p-1.5 pl-5 transition-shadow focus-within:ring-2 focus-within:ring-brand-deep/70"
                   >
                     <input
                       type="email"
@@ -192,18 +200,16 @@ export default function Home() {
                       aria-label="Email address"
                       aria-invalid={Boolean(error)}
                       disabled={status === "sending"}
-                      className="w-full min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-ink-faint disabled:opacity-60"
+                      className="h-auto flex-1 rounded-none border-0 bg-transparent px-0 py-1 text-base shadow-none outline-0! placeholder:text-ink-faint focus-visible:border-0 focus-visible:ring-0 disabled:opacity-60"
                     />
-                    <motion.button
+                    <Button
                       type="submit"
                       disabled={status === "sending"}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="rounded-full bg-ink px-6 py-3 text-sm font-semibold whitespace-nowrap text-paper disabled:opacity-60"
+                      size="lg"
+                      className="h-auto rounded-full px-6 py-3 text-sm font-semibold whitespace-nowrap"
                     >
                       {status === "sending" ? "Sending…" : "Notify me"}
-                    </motion.button>
+                    </Button>
                   </motion.form>
                 )}
               </AnimatePresence>
@@ -221,7 +227,7 @@ export default function Home() {
               )}
 
               {status !== "success" && (
-                <p className="mt-4 text-xs text-ink-faint">
+                <p className="mt-4 text-sm text-ink-faint">
                   One email at launch. No spam, ever.
                 </p>
               )}

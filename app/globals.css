@@ -1,11 +1,22 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+/*
+  ---break---
+*/
+@custom-variant dark (&:is(.dark *));
 
 /*
   Navachitra design tokens — warm ink-on-paper.
 
   Everything is OKLCH: warm off-white paper, warm near-black ink,
-  one marigold accent used sparingly (live dot, focus, selection,
-  success mark, the wordmark spark).
+  one indigo brand accent used sparingly (live dot, focus, selection,
+  success mark, the wordmark spark). Brand values are Tailwind's
+  indigo palette (indigo-500 / indigo-600).
+
+  NOTE: the brand accent is named --color-brand (not --color-accent) to
+  avoid colliding with shadcn/ui's own --color-accent (a muted hover
+  surface) defined in the @theme inline block below.
 */
 @theme {
   --color-paper: oklch(98.3% 0.005 84);
@@ -13,8 +24,8 @@
   --color-ink-soft: oklch(45% 0.014 75);
   --color-ink-faint: oklch(57% 0.012 78);
   --color-field: oklch(94.4% 0.007 84);
-  --color-accent: oklch(70% 0.15 62);
-  --color-accent-deep: oklch(53% 0.125 55);
+  --color-brand: oklch(58.5% 0.233 277.117); /* indigo-500 */
+  --color-brand-deep: oklch(51.1% 0.262 276.966); /* indigo-600 */
   --color-danger: oklch(52% 0.185 27);
 
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
@@ -23,6 +34,33 @@
 
 :root {
   color-scheme: light;
+
+  /*
+    shadcn/ui semantic tokens mapped onto the Navachitra palette.
+    These reference the warm/indigo --color-* tokens above, so shadcn
+    components (Button, Input, …) inherit the theme and flip
+    automatically in dark mode — the .dark block only needs to override
+    the --color-* tokens, not these.
+  */
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-paper);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-ink);
+  --primary-foreground: var(--color-paper);
+  --secondary: var(--color-field);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-field);
+  --muted-foreground: var(--color-ink-soft);
+  --accent: var(--color-field);
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-danger);
+  --border: color-mix(in oklch, var(--color-ink) 12%, transparent);
+  --input: color-mix(in oklch, var(--color-ink) 16%, transparent);
+  --ring: var(--color-brand);
+  --radius: 0.625rem;
 }
 
 /*
@@ -38,8 +76,8 @@
   --color-ink-soft: oklch(74% 0.012 78);
   --color-ink-faint: oklch(60% 0.012 78);
   --color-field: oklch(27% 0.014 75);
-  --color-accent: oklch(74% 0.14 62);
-  --color-accent-deep: oklch(72% 0.13 58);
+  --color-brand: oklch(67.3% 0.182 276.935); /* indigo-400 */
+  --color-brand-deep: oklch(78.5% 0.115 274.713); /* indigo-300 */
   --color-danger: oklch(66% 0.17 27);
 }
 
@@ -50,19 +88,63 @@ body {
 }
 
 ::selection {
-  background-color: oklch(70% 0.15 62 / 0.3);
+  background-color: oklch(58.5% 0.233 277.117 / 0.3); /* indigo-500 */
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent-deep);
+  outline: 2px solid var(--color-brand-deep);
   outline-offset: 2px;
 }
 
-/* Soft marigold wash behind the hero. Decorative only. */
+/* Soft indigo wash behind the hero. Decorative only. */
 .hero-glow {
   background: radial-gradient(
     ellipse 70% 55% at 50% -12%,
-    oklch(72% 0.14 70 / 0.14),
+    oklch(67.3% 0.182 276.935 / 0.14), /* indigo-400 */
     transparent
   );
+}
+/*
+  ---break---
+*/
+@theme inline {
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+/*
+  ---break---
+*/
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
 }

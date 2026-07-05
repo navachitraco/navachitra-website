@@ -1,8 +1,12 @@
 import type { Metadata, Viewport } from "next"
-import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google"
+import { Bricolage_Grotesque, Hanken_Grotesk, Geist } from "next/font/google"
 
 import { ThemeHotkey } from "@/components/theme-hotkey"
 import "./globals.css"
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
 
 // Runs before paint to set the theme class from the saved choice (or the
 // device preference when there is none), avoiding a flash of the wrong theme.
@@ -47,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${hanken.variable}`}
+      className={cn(bricolage.variable, hanken.variable, "font-sans", geist.variable)}
       suppressHydrationWarning
     >
       <head>
