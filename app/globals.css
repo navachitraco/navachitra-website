@@ -26,6 +26,7 @@
   --color-brand: oklch(52% 0.008 264); /* zinc-600 */
   --color-brand-deep: oklch(42% 0.008 264); /* zinc-700 */
   --color-danger: oklch(52% 0.185 27);
+  --color-success: oklch(58% 0.13 155);
 
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-bricolage), var(--font-hanken), sans-serif;
@@ -79,6 +80,7 @@
   --color-brand: oklch(78% 0.008 264); /* zinc-300 */
   --color-brand-deep: oklch(88% 0.005 264); /* zinc-200 */
   --color-danger: oklch(66% 0.17 27);
+  --color-success: oklch(72% 0.14 155);
 }
 
 body {
