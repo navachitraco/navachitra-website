@@ -9,8 +9,9 @@ import {
   type Variants,
 } from "motion/react"
 
+import { Icon } from "@iconify/react"
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 
 // PASTE YOUR WEB3FORMS ACCESS KEY BELOW.
 // Replace "YOUR_WEB3FORMS_KEY" with the access key from https://web3forms.com
@@ -45,6 +46,24 @@ const fade: Variants = {
     transition: { duration: 1.1, delay: 0.6, ease: "easeOut" },
   },
 }
+
+const socialLinks = [
+  {
+    href: "https://instagram.com/navachitraco",
+    label: "Instagram",
+    icon: "tabler:brand-instagram-filled",
+  },
+  {
+    href: "https://facebook.com/navachitraco",
+    label: "Facebook",
+    icon: "tabler:brand-facebook-filled",
+  },
+  {
+    href: "https://wa.me/?text=Hi%20Navachitra",
+    label: "WhatsApp",
+    icon: "tabler:brand-whatsapp-filled",
+  },
+] as const
 
 export default function Home() {
   const [email, setEmail] = useState("")
@@ -121,14 +140,23 @@ export default function Home() {
               />
             </svg>
           </Link>
-          <a
-            href="https://instagram.com/navachitraco"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-ink-soft transition-colors hover:text-ink"
+          <nav
+            aria-label="Social media"
+            className="flex items-center gap-4"
           >
-            @navachitraco
-          </a>
+            {socialLinks.map(({ href, label, icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="text-white transition-opacity hover:opacity-80"
+              >
+                <Icon icon={icon} className="size-5" />
+              </a>
+            ))}
+          </nav>
         </motion.header>
 
         <main className="relative flex flex-1 items-center justify-center px-6 pb-[6svh]">
@@ -140,7 +168,7 @@ export default function Home() {
           >
             <motion.p
               variants={rise}
-              className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.18em] text-ink-soft uppercase"
+              className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-[0.18em] text-ink-soft uppercase sm:text-base"
             >
               <span className="relative flex size-2">
                 <span className="absolute inset-0 rounded-full bg-brand opacity-70 motion-safe:animate-ping" />
@@ -151,14 +179,14 @@ export default function Home() {
 
             <motion.h1
               variants={rise}
-              className="mt-7 font-display text-[clamp(2.75rem,8vw,5.5rem)] leading-[1.04] font-bold tracking-[-0.025em] text-balance"
+              className="mt-7 font-display text-[clamp(3rem,8.5vw,6rem)] leading-[1.04] font-bold tracking-[-0.025em] text-balance"
             >
               A new image for every business we touch.
             </motion.h1>
 
             <motion.p
               variants={rise}
-              className="mx-auto mt-6 max-w-md text-base leading-relaxed text-pretty text-ink-soft sm:text-lg"
+              className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-pretty text-ink-soft sm:text-xl"
             >
               Navachitra is a social media and web design studio from Surat. Our
               new home is almost ready. Be the first to see it.
@@ -200,13 +228,13 @@ export default function Home() {
                       aria-label="Email address"
                       aria-invalid={Boolean(error)}
                       disabled={status === "sending"}
-                      className="h-auto flex-1 rounded-none border-0 bg-transparent px-0 py-1 text-base shadow-none outline-0! placeholder:text-ink-faint focus-visible:border-0 focus-visible:ring-0 disabled:opacity-60"
+                      className="h-auto flex-1 rounded-none border-0 bg-transparent px-0 py-1 text-lg shadow-none outline-0! placeholder:text-ink-faint focus-visible:border-0 focus-visible:ring-0 disabled:opacity-60"
                     />
                     <Button
                       type="submit"
                       disabled={status === "sending"}
                       size="lg"
-                      className="h-auto rounded-full px-6 py-3 text-sm font-semibold whitespace-nowrap"
+                      className="h-auto rounded-full px-6 py-3 text-base font-semibold whitespace-nowrap"
                     >
                       {status === "sending" ? "Sending…" : "Notify me"}
                     </Button>
@@ -227,7 +255,7 @@ export default function Home() {
               )}
 
               {status !== "success" && (
-                <p className="mt-4 text-sm text-ink-faint">
+                <p className="mt-4 text-base text-ink-faint">
                   One email at launch. No spam, ever.
                 </p>
               )}
@@ -239,9 +267,15 @@ export default function Home() {
           variants={fade}
           initial="hidden"
           animate="show"
-          className="relative flex items-center justify-between px-6 py-6 text-xs text-ink-faint sm:px-10"
+          className="relative flex items-center justify-between px-6 py-6 text-sm text-white sm:px-10 sm:text-base"
         >
-          <p>Surat, India</p>
+          <p className="inline-flex cursor-default items-center gap-2 transition-opacity duration-200 hover:opacity-70">
+            <Icon
+              icon="tabler:map-pin-filled"
+              className="size-[1.125rem] shrink-0 sm:size-5"
+            />
+            Surat, India
+          </p>
           <p>© 2026 Navachitra</p>
         </motion.footer>
       </div>
