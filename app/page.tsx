@@ -141,10 +141,7 @@ export default function Home() {
               />
             </svg>
           </Link>
-          <nav
-            aria-label="Social media"
-            className="flex items-center gap-4"
-          >
+          <nav aria-label="Social media" className="flex items-center gap-4">
             {socialLinks.map(({ href, label, icon }) => (
               <a
                 key={label}
@@ -170,7 +167,7 @@ export default function Home() {
             <motion.div variants={rise} className="flex justify-center">
               <Badge
                 variant="ghost"
-                className="h-auto gap-2.5 rounded-full border-0 bg-black/5 px-4 py-2 text-[0.68rem] font-semibold tracking-[0.22em] text-ink uppercase shadow-none backdrop-blur-md transition-colors hover:bg-black/8 dark:bg-white/10 dark:text-white/90 dark:hover:bg-white/15 sm:px-5 sm:py-2.5 sm:text-xs"
+                className="h-auto gap-2.5 rounded-full border-0 bg-black/5 px-4 py-2 text-[0.68rem] font-semibold tracking-[0.22em] text-ink uppercase shadow-none backdrop-blur-md transition-colors hover:bg-black/8 sm:px-5 sm:py-2.5 sm:text-xs dark:bg-white/10 dark:text-white/90 dark:hover:bg-white/15"
               >
                 <span className="relative flex size-2 shrink-0">
                   <span className="absolute inset-0 rounded-full bg-ink opacity-50 motion-safe:animate-ping dark:bg-white" />
