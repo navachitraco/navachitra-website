@@ -20,7 +20,7 @@
 */
 @theme {
   --color-paper: oklch(98.3% 0.005 84);
-  --color-ink: oklch(21.5% 0.012 75);
+  --color-ink: #222222;
   --color-ink-soft: oklch(45% 0.014 75);
   --color-ink-faint: oklch(57% 0.012 78);
   --color-field: oklch(94.4% 0.007 84);
@@ -34,6 +34,7 @@
 
 :root {
   color-scheme: light;
+  --color-ink: #222222;
 
   /*
     shadcn/ui semantic tokens mapped onto the Navachitra palette.

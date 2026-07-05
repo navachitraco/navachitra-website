@@ -11,6 +11,7 @@ import {
 
 import { Icon } from "@iconify/react"
 
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 // PASTE YOUR WEB3FORMS ACCESS KEY BELOW.
@@ -151,7 +152,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="text-white transition-opacity hover:opacity-80"
+                className="text-ink transition-opacity hover:opacity-80"
               >
                 <Icon icon={icon} className="size-5" />
               </a>
@@ -166,20 +167,22 @@ export default function Home() {
             animate="show"
             className="w-full max-w-3xl text-center"
           >
-            <motion.p
-              variants={rise}
-              className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-[0.18em] text-ink-soft uppercase sm:text-base"
-            >
-              <span className="relative flex size-2">
-                <span className="absolute inset-0 rounded-full bg-brand opacity-70 motion-safe:animate-ping" />
-                <span className="relative size-2 rounded-full bg-brand" />
-              </span>
-              Launching soon
-            </motion.p>
+            <motion.div variants={rise} className="flex justify-center">
+              <Badge
+                variant="ghost"
+                className="h-auto gap-2.5 rounded-full border-0 bg-black/5 px-4 py-2 text-[0.68rem] font-semibold tracking-[0.22em] text-ink uppercase shadow-none backdrop-blur-md transition-colors hover:bg-black/8 dark:bg-white/10 dark:text-white/90 dark:hover:bg-white/15 sm:px-5 sm:py-2.5 sm:text-xs"
+              >
+                <span className="relative flex size-2 shrink-0">
+                  <span className="absolute inset-0 rounded-full bg-ink opacity-50 motion-safe:animate-ping dark:bg-white" />
+                  <span className="relative size-2 rounded-full bg-ink dark:bg-white/90" />
+                </span>
+                Launching soon
+              </Badge>
+            </motion.div>
 
             <motion.h1
               variants={rise}
-              className="mt-7 font-display text-[clamp(3rem,8.5vw,6rem)] leading-[1.04] font-bold tracking-[-0.025em] text-balance"
+              className="mt-7 font-display text-[clamp(3rem,8.5vw,6rem)] leading-[1.04] font-bold tracking-[-0.025em] text-balance text-ink"
             >
               A new image for every business we touch.
             </motion.h1>
@@ -267,7 +270,7 @@ export default function Home() {
           variants={fade}
           initial="hidden"
           animate="show"
-          className="relative flex items-center justify-between px-6 py-6 text-sm text-white sm:px-10 sm:text-base"
+          className="relative flex items-center justify-between px-6 py-6 text-sm text-ink sm:px-10 sm:text-base"
         >
           <p className="inline-flex cursor-default items-center gap-2 transition-opacity duration-200 hover:opacity-70">
             <Icon
