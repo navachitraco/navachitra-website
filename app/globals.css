@@ -25,6 +25,24 @@
   color-scheme: light;
 }
 
+/*
+  Dark mode — same warm palette, inverted. The `dark` class is set on
+  <html> before paint by the inline script in app/layout.tsx, and toggled
+  by pressing "d" (see components/theme-hotkey.tsx). Because the utilities
+  read these CSS variables, overriding them here flips the whole page.
+*/
+.dark {
+  color-scheme: dark;
+  --color-paper: oklch(21% 0.012 75);
+  --color-ink: oklch(95% 0.008 84);
+  --color-ink-soft: oklch(74% 0.012 78);
+  --color-ink-faint: oklch(60% 0.012 78);
+  --color-field: oklch(27% 0.014 75);
+  --color-accent: oklch(74% 0.14 62);
+  --color-accent-deep: oklch(72% 0.13 58);
+  --color-danger: oklch(66% 0.17 27);
+}
+
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);

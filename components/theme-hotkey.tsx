@@ -2,16 +2,29 @@
 
 import { useEffect } from "react"
 
-// Alt+D toggles light/dark. The choice is saved to localStorage ("theme")
+// Pressing "d" toggles light/dark. The choice is saved to localStorage ("theme")
 // and re-applied before paint by the inline script in app/layout.tsx.
 // With no saved choice, the site follows the device color scheme.
 export function ThemeHotkey() {
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
-      if (!event.altKey || event.ctrlKey || event.metaKey || event.repeat) {
+      // Ignore when a modifier is held (e.g. Ctrl+D, Cmd+D) or on key repeat.
+      if (event.altKey || event.ctrlKey || event.metaKey || event.repeat) {
         return
       }
-      if (event.code !== "KeyD") {
+      if (event.key !== "d" && event.key !== "D") {
+        return
+      }
+
+      // Don't hijack the key while the user is typing in a field.
+      const target = event.target as HTMLElement | null
+      if (
+        target &&
+        (target.isContentEditable ||
+          target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT")
+      ) {
         return
       }
 
