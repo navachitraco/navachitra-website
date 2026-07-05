@@ -28,8 +28,8 @@
   --color-danger: oklch(52% 0.185 27);
   --color-success: oklch(58% 0.13 155);
 
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-bricolage), var(--font-hanken), sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-dm-sans), sans-serif;
 }
 
 :root {
@@ -62,6 +62,7 @@
   --input: color-mix(in oklch, var(--color-ink) 16%, transparent);
   --ring: var(--color-brand);
   --radius: 0.625rem;
+  --toast-bg: #e4e4e4;
 }
 
 /*
@@ -81,6 +82,7 @@
   --color-brand-deep: oklch(88% 0.005 264); /* zinc-200 */
   --color-danger: oklch(66% 0.17 27);
   --color-success: oklch(72% 0.14 155);
+  --toast-bg: #2b261f;
 }
 
 body {

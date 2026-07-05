@@ -196,6 +196,12 @@ export default function Home() {
                     setEmail(event.target.value)
                     if (invalid) setInvalid(false)
                   }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" && !loading) {
+                      event.preventDefault()
+                      handleNotifyClick()
+                    }
+                  }}
                   placeholder="Enter your email"
                   aria-label="Email address"
                   aria-invalid={invalid}

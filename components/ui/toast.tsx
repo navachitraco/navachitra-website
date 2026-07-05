@@ -1,7 +1,23 @@
 "use client"
 
 import { Toaster as HotToaster, toast } from "react-hot-toast"
-import { InfoIcon } from "lucide-react"
+
+const EMOJIS = {
+  success: "✅",
+  error: "❌",
+  info: "⚠️",
+} as const
+
+function ToastEmoji({ variant }: { variant: keyof typeof EMOJIS }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="shrink-0 text-lg leading-none select-none"
+    >
+      {EMOJIS[variant]}
+    </span>
+  )
+}
 
 function ToastContent({
   title,
@@ -26,17 +42,16 @@ function ToastContent({
 
 export const notify = {
   success: (title: string, description?: string) =>
-    toast.success(<ToastContent title={title} description={description} />),
+    toast.success(<ToastContent title={title} description={description} />, {
+      icon: <ToastEmoji variant="success" />,
+    }),
   error: (title: string, description?: string) =>
-    toast.error(<ToastContent title={title} description={description} />),
+    toast.error(<ToastContent title={title} description={description} />, {
+      icon: <ToastEmoji variant="error" />,
+    }),
   info: (title: string, description?: string) =>
     toast(<ToastContent title={title} description={description} />, {
-      icon: (
-        <InfoIcon
-          className="size-5 shrink-0"
-          style={{ color: "var(--color-brand)" }}
-        />
-      ),
+      icon: <ToastEmoji variant="info" />,
     }),
 }
 
@@ -45,31 +60,17 @@ export function Toaster() {
     <HotToaster
       position="top-center"
       gutter={10}
-      containerStyle={{ top: 24 }}
+      containerStyle={{ top: 32 }}
       toastOptions={{
         duration: 4000,
         style: {
-          background: "var(--popover)",
+          background: "var(--toast-bg)",
           color: "var(--popover-foreground)",
           border: "none",
           borderRadius: "calc(var(--radius) * 2)",
-          // boxShadow:
-          //   "0 1px 2px color-mix(in oklch, var(--color-ink) 8%, transparent), 0 18px 44px -18px color-mix(in oklch, var(--color-ink) 38%, transparent)",
+          boxShadow: "none",
           padding: "0.875rem 1.125rem",
           maxWidth: "24rem",
-          gap: "0.75rem",
-        },
-        success: {
-          iconTheme: {
-            primary: "var(--color-success)",
-            secondary: "var(--popover)",
-          },
-        },
-        error: {
-          iconTheme: {
-            primary: "var(--color-danger)",
-            secondary: "var(--popover)",
-          },
         },
       }}
     />

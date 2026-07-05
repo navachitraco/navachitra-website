@@ -1,12 +1,10 @@
 import { Toaster } from "@/components/ui/toast"
 import type { Metadata, Viewport } from "next"
-import { Bricolage_Grotesque, Hanken_Grotesk, Geist } from "next/font/google"
+import { Bricolage_Grotesque, DM_Sans } from "next/font/google"
 
 import { ThemeHotkey } from "@/components/theme-hotkey"
 import "./globals.css"
 import { cn } from "@/lib/utils"
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
 // Runs before paint to set the theme class from the saved choice (or the
 // device preference when there is none), avoiding a flash of the wrong theme.
@@ -17,9 +15,9 @@ const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
 })
 
-const hanken = Hanken_Grotesk({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-hanken",
+  variable: "--font-dm-sans",
 })
 
 export const metadata: Metadata = {
@@ -51,12 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        bricolage.variable,
-        hanken.variable,
-        "font-sans",
-        geist.variable
-      )}
+      className={cn(bricolage.variable, dmSans.variable, "font-sans")}
       suppressHydrationWarning
     >
       <head>
