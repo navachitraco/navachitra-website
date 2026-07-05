@@ -10,9 +10,8 @@
   Navachitra design tokens — warm ink-on-paper.
 
   Everything is OKLCH: warm off-white paper, warm near-black ink,
-  one indigo brand accent used sparingly (live dot, focus, selection,
-  success mark, the wordmark spark). Brand values are Tailwind's
-  indigo palette (indigo-500 / indigo-600).
+  and a neutral zinc accent used sparingly (focus, selection, success
+  mark). Brand values map to Tailwind's zinc palette.
 
   NOTE: the brand accent is named --color-brand (not --color-accent) to
   avoid colliding with shadcn/ui's own --color-accent (a muted hover
@@ -24,8 +23,8 @@
   --color-ink-soft: oklch(45% 0.014 75);
   --color-ink-faint: oklch(57% 0.012 78);
   --color-field: oklch(94.4% 0.007 84);
-  --color-brand: oklch(58.5% 0.233 277.117); /* indigo-500 */
-  --color-brand-deep: oklch(51.1% 0.262 276.966); /* indigo-600 */
+  --color-brand: oklch(52% 0.008 264); /* zinc-600 */
+  --color-brand-deep: oklch(42% 0.008 264); /* zinc-700 */
   --color-danger: oklch(52% 0.185 27);
 
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
@@ -38,7 +37,7 @@
 
   /*
     shadcn/ui semantic tokens mapped onto the Navachitra palette.
-    These reference the warm/indigo --color-* tokens above, so shadcn
+    These reference the warm/zinc --color-* tokens above, so shadcn
     components (Button, Input, …) inherit the theme and flip
     automatically in dark mode — the .dark block only needs to override
     the --color-* tokens, not these.
@@ -77,8 +76,8 @@
   --color-ink-soft: oklch(74% 0.012 78);
   --color-ink-faint: oklch(60% 0.012 78);
   --color-field: oklch(27% 0.014 75);
-  --color-brand: oklch(67.3% 0.182 276.935); /* indigo-400 */
-  --color-brand-deep: oklch(78.5% 0.115 274.713); /* indigo-300 */
+  --color-brand: oklch(78% 0.008 264); /* zinc-300 */
+  --color-brand-deep: oklch(88% 0.005 264); /* zinc-200 */
   --color-danger: oklch(66% 0.17 27);
 }
 
@@ -89,19 +88,27 @@ body {
 }
 
 ::selection {
-  background-color: oklch(58.5% 0.233 277.117 / 0.3); /* indigo-500 */
+  background-color: color-mix(in oklch, var(--color-ink) 22%, transparent);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-brand-deep);
+  outline: 2px solid color-mix(in oklch, var(--color-ink) 35%, transparent);
   outline-offset: 2px;
 }
 
-/* Soft indigo wash behind the hero. Decorative only. */
+/* Soft neutral wash behind the hero. Decorative only. */
 .hero-glow {
   background: radial-gradient(
     ellipse 70% 55% at 50% -12%,
-    oklch(67.3% 0.182 276.935 / 0.14), /* indigo-400 */
+    color-mix(in oklch, var(--color-ink) 8%, transparent),
+    transparent
+  );
+}
+
+.dark .hero-glow {
+  background: radial-gradient(
+    ellipse 70% 55% at 50% -12%,
+    oklch(98% 0.005 84 / 0.07),
     transparent
   );
 }

@@ -217,7 +217,7 @@ export default function Home() {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                     onSubmit={handleSubmit}
                     noValidate
-                    className="flex items-center gap-2 rounded-full bg-field p-1.5 pl-5 transition-shadow focus-within:ring-2 focus-within:ring-brand-deep/70"
+                    className="flex items-center gap-2 rounded-full bg-field p-1.5 pl-5 transition-shadow focus-within:ring-2 focus-within:ring-ink/50 dark:focus-within:ring-white/50"
                   >
                     <input
                       type="email"
