@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/*
+  Navachitra design tokens — warm ink-on-paper.
+
+  Everything is OKLCH: warm off-white paper, warm near-black ink,
+  one marigold accent used sparingly (live dot, focus, selection,
+  success mark, the wordmark spark).
+*/
+@theme {
+  --color-paper: oklch(98.3% 0.005 84);
+  --color-ink: oklch(21.5% 0.012 75);
+  --color-ink-soft: oklch(45% 0.014 75);
+  --color-ink-faint: oklch(57% 0.012 78);
+  --color-field: oklch(94.4% 0.007 84);
+  --color-accent: oklch(70% 0.15 62);
+  --color-accent-deep: oklch(53% 0.125 55);
+  --color-danger: oklch(52% 0.185 27);
+
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-hanken), sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: oklch(70% 0.15 62 / 0.3);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-deep);
+  outline-offset: 2px;
+}
+
+/* Soft marigold wash behind the hero. Decorative only. */
+.hero-glow {
+  background: radial-gradient(
+    ellipse 70% 55% at 50% -12%,
+    oklch(72% 0.14 70 / 0.14),
+    transparent
+  );
+}
